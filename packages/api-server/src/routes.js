@@ -5,6 +5,19 @@ const readJpeg = require('./utils/read-jpeg');
 const toSha1 = require('./utils/sha1');
 
 const routes = (app, maxBytes, modelConfig, embeddings, objects, faces) => {
+  app.post('/mj-metadata', [
+    isMimeMiddleware('image/jpeg'),
+    binaryBodyMiddleware(maxBytes),
+    asyncMiddleware(async (req) => {
+      const {buffer, width, height} = readJpeg(req.body)
+      const srcSha1sum = toSha1(req.body);
+      const created = new Date().toISOString();
+      const data = await embeddings(buffer, width, height)
+      const alpha = modelConfig.mobileNet.alpha;
+      const version = `v${modelConfig.mobileNet.version}_${alpha >= 1 ? alpha.toFixed(1) : alpha.toFixed(2)}`;
+      return { srcSha1sum, model: 'mobilenet', version, created, data };
+    })
+  ]);
   app.post('/embeddings', [
     isMimeMiddleware('image/jpeg'),
     binaryBodyMiddleware(maxBytes),

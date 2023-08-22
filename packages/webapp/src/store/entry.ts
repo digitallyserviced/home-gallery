@@ -12,5 +12,9 @@ export interface Entry {
   appliedEventIds?: string[],
   textCache?: string | false
   similarityHash: string
+  similarity:number
+  colorDistance:number
+  vibrance:any[]
+overlayText:string
   faces?: any[],
 }

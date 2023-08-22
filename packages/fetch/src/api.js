@@ -1,110 +1,125 @@
-const fs = require('fs/promises')
-const { createWriteStream } = require('fs')
-const path = require('path')
-const { pipeline } = require('stream')
-const fetch = require('node-fetch')
-const https = require('https');
+const fs = require("fs/promises");
+const { createWriteStream } = require("fs");
+const path = require("path");
+const { pipeline } = require("stream");
+const fetch = require("node-fetch");
+const https = require("https");
 
-const { isDatabaseTypeCompatible, HeaderType: DatabaseHeaderType } = require('@home-gallery/database')
+const {
+  isDatabaseTypeCompatible,
+  HeaderType: DatabaseHeaderType,
+} = require("@home-gallery/database");
 
-const { isEventTypeCompatible, HeaderType: EventHeaderType } = require('@home-gallery/events/dist/node')
+const {
+  isEventTypeCompatible,
+  HeaderType: EventHeaderType,
+} = require("@home-gallery/events/dist/node");
 
-const log = require('@home-gallery/logger')('fetch.api')
+const log = require("@home-gallery/logger")("fetch.api");
 
 const insecureAgent = new https.Agent({
   rejectUnauthorized: false,
 });
 
 const options = (url, insecure) => {
-  if (url.startsWith('https') && insecure) {
+  if (url.startsWith("https") && insecure) {
     return {
-      agent: insecureAgent
-    }
+      agent: insecureAgent,
+    };
   }
-  return {}
-}
+  return {};
+};
 
 const createIncompatibleError = (data, expectedType) => {
-  const err = new Error(`Incompabtible data type ${data && data.type}. Expect ${expectedType}`)
-  err.code = 'EINCOMP'
-  err.type = database && database.type
-  err.expectedType = expectedType
-  return err
-}
+  const err = new Error(`Incompabtible data type ${data && data.type}. Expect ${expectedType}`);
+  err.code = "EINCOMP";
+  err.type = database && database.type;
+  err.expectedType = expectedType;
+  return err;
+};
 
-const fetchDatabase = async (serverUrl, {query, insecure} = {}) => {
-  log.debug(`Fetching database ${query ? `with query '${query}' ` : ''}from remote ${serverUrl}...`)
-  const t0 = Date.now()
-  return fetch(`${serverUrl}/api/database.json${query ? `?q=${query}` : ''}`, options(serverUrl, insecure))
-    .then(res => {
+const fetchDatabase = async (serverUrl, { query, insecure } = {}) => {
+  log.debug(
+    `Fetching database ${query ? `with query '${query}' ` : ""}from remote ${serverUrl}...`
+  );
+  const t0 = Date.now();
+  return fetch(
+    `${serverUrl}/api/database.json${query ? `?q=${query}` : ""}`,
+    options(serverUrl, insecure)
+  )
+    .then((res) => {
       if (res.status == 404) {
-        log.debug(t0, `Remote ${serverUrl} has no database. Continue with empty database`)
-        return { type: EventHeaderType, data: [] }
+        log.debug(t0, `Remote ${serverUrl} has no database. Continue with empty database`);
+        return { type: EventHeaderType, data: [] };
       } else if (!res.ok) {
-        throw new Error(`Unexpected response status ${res.status}`)
+        throw new Error(`Unexpected response status ${res.status}`);
       }
-      return res.json()
+      return res.json();
     })
-    .then(database => {
+    .then((database) => {
       if (!isDatabaseTypeCompatible(database && database.type)) {
-        throw createIncompatibleError(data, DatabaseHeaderType)
+        throw createIncompatibleError(data, DatabaseHeaderType);
       }
-      log.info(t0, `Fetched database with ${database.data.length} entries from remote ${serverUrl}`)
-      return database
-    })
-}
+      log.info(
+        t0,
+        `Fetched database with ${database.data.length} entries from remote ${serverUrl}`
+      );
+      return database;
+    });
+};
 
 const fetchEvents = async (serverUrl, { insecure } = {}) => {
-  log.debug(`Fetching events from remote ${serverUrl}...`)
-  const t0 = Date.now()
+  log.debug(`Fetching events from remote ${serverUrl}...`);
+  const t0 = Date.now();
   return fetch(`${serverUrl}/api/events.json`, options(serverUrl, insecure))
-    .then(res => {
+    .then((res) => {
       if (res.status == 404) {
-        log.debug(t0, `Remote has no events. Continue with empty events`)
-        return { type: EventHeaderType, data: [] }
+        log.debug(t0, `Remote has no events. Continue with empty events`);
+        return { type: EventHeaderType, data: [] };
       } else if (!res.ok) {
-        throw new Error(`Unexpected response status ${res.status}`)
+        throw new Error(`Unexpected response status ${res.status}`);
       }
-      return res.json()
-    }).then(events => {
+      return res.json();
+    })
+    .then((events) => {
       if (!isEventTypeCompatible(events && events.type)) {
-        throw createIncompatibleError(data, EventHeaderType)
+        throw createIncompatibleError(data, EventHeaderType);
       }
-      log.info(t0, `Fetched events with ${events.data.length} entries from remote ${serverUrl}`)
-      return events
-    })
-}
-
+      log.info(t0, `Fetched events with ${events.data.length} entries from remote ${serverUrl}`);
+      return events;
+    });
+};
 const fetchFile = async (serverUrl, file, storageDir, { insecure } = {}) => {
-  log.trace(`Fetching ${file} from remote ${serverUrl}...`)
-  const targetFilename = path.join(storageDir, file)
-  const dir = path.dirname(targetFilename)
-  await fs.access(dir).then(() => true).catch(() => fs.mkdir(dir, {recursive: true}))
+  log.trace(`Fetching ${file} from remote ${serverUrl}...`);
+  const targetFilename = path.join(storageDir, file);
+  const dir = path.dirname(targetFilename);
+  await fs
+    .access(dir)
+    .then(() => true)
+    .catch(() => fs.mkdir(dir, { recursive: true }));
 
-  const url = `${serverUrl}/files/${file}`
-  const t0 = Date.now()
+  const url = `${serverUrl}/files/${file}`;
+  const t0 = Date.now();
   return fetch(url, options(url, insecure))
-    .then(res => {
+    .then((res) => {
       if (!res.ok) {
-        throw new Error(`HTTP status code is ${res.status}`)
+        throw new Error(`HTTP status code is ${res.status}`);
       }
-      return res
+      return res;
     })
-    .then(res => {
+    .then((res) => {
       return new Promise((resolve, reject) => {
-        pipeline(
-          res.body,
-          createWriteStream(targetFilename),
-          err => err ? reject(err) : resolve()
-        )
-      })
+        pipeline(res.body, createWriteStream(targetFilename), (err) =>
+          err ? reject(err) : resolve()
+        );
+      });
     })
     .then(() => log.debug(t0, `Fetched file ${file} from remote ${serverUrl}`))
-    .catch(err => log.warn(err, `Failed to fetch ${file} from remote ${url}: ${err}. Continue`))
-}
+    .catch((err) => log.warn(err, `Failed to fetch ${file} from remote ${url}: ${err}. Continue`));
+};
 
 module.exports = {
   fetchDatabase,
   fetchEvents,
-  fetchFile
-}
+  fetchFile,
+};

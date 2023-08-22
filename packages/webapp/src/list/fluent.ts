@@ -1,6 +1,6 @@
 const defaultOptions : IFluentOptions = {
-	minHeight: 180,
-	maxHeight: 220,
+	minHeight: 300,
+	maxHeight: 420,
 	maxPotraitHeight: 250,
 	width: 1024,
 	padding: 10

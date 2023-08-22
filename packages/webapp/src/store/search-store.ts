@@ -5,14 +5,17 @@ import { Entry } from './entry'
 import { useEntryStore } from './entry-store'
 
 import { execQuery } from './query/query'
-import { execSimilar } from './query/similar'
+import { execSimilar, execVibrantDistance } from './query/similar'
 import { execFaces } from './query/faces'
-import { byDateDesc } from './query/utils'
+import { byDateDesc, byKeyWith } from './query/utils'
 
 export interface Search {
-  type: 'none' | 'year' | 'query' | 'similar' | 'faces'
+  type: 'none' | 'year' | 'query' | 'similar' | 'faces' | 'sortKey' | 'vibrance'
   value?: any
   query?: string
+sort?: {key:string,dir:string}
+  extra?:any
+  seedEntry?:Entry
 }
 
 export interface SearchStore {
@@ -25,24 +28,34 @@ const doSearch = async (entries: Entry[], query) => {
   if (!entries.length) {
     return entries;
   }
+  if (query.sort && query.sort.key){
+    entries.sort(byKeyWith(query.sort.key))
+  } else {
   entries.sort(byDateDesc)
 
+  }
+let seedEntry
   if (query.type == 'query') {
-    entries = await execQuery(entries, query.value)
+    entries = await execQuery(entries, query.value,seedEntry)
   } else if (query.type == 'year') {
-    entries = await execQuery(entries, `year:${query.value} order by date asc`)
+    entries = await execQuery(entries, `year:${query.value} order by date asc`,seedEntry)
   } else if (query.type == 'similar') {
     const id = query.value
-    const seedEntry = entries.find(entry => entry.id.startsWith(id))
-    entries = execSimilar(entries, seedEntry?.similarityHash)
+    seedEntry = entries.find(entry => entry.id.startsWith(id))
+    entries = execSimilar(entries, seedEntry?.similarityHash, query.query)
+  } else if (query.type == 'vibrance') {
+    const id = query.value
+    seedEntry = entries.find(entry => entry.id.startsWith(id))
+    entries = execVibrantDistance(entries, seedEntry?.vibrance, query.query)
+
   } else if (query.type == 'faces') {
     const { id, faceIndex } = query.value
-    const seedEntry = entries.find(entry => entry.id.startsWith(id))
+    seedEntry = entries.find(entry => entry.id.startsWith(id))
     const descriptor = seedEntry?.faces[faceIndex]?.descriptor
     entries = execFaces(entries, descriptor)
   }
-  if (query.query) {
-    entries = await execQuery(entries, query.query)
+  if (query.query /* && query.type !== 'similar' */) {
+    entries = await execQuery(entries, query.query,seedEntry)
   }
 
   return entries
@@ -62,7 +75,8 @@ export const useSearchStore = create<
   ]
   >(
   persist((set, get) => ({
-    query: { type: 'none' },
+    query: {sort: {key:'date',dir:'desc'}, type: 'none' },
+    
 
     search: (query: Search) => {
       set((state) => ({...state, query}))

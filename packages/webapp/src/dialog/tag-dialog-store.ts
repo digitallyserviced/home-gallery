@@ -9,6 +9,7 @@ export interface TagDialogState {
   allTags: string[]
   suggestions: TagSuggestion[]
   showSuggestions: boolean
+  canceled:boolean
 }
 
 export const initialState: TagDialogState = {
@@ -16,7 +17,8 @@ export const initialState: TagDialogState = {
   tags: [],
   allTags: [],
   suggestions: [],
-  showSuggestions: false
+  showSuggestions: false,
+  canceled:false
 }
 
 export type TagAction =
@@ -29,6 +31,8 @@ export type TagAction =
  | {type: 'clearSuggentions'}
  | {type: 'nextSuggestion'}
  | {type: 'prevSuggestion'}
+ | {type: 'cancel'}
+ | {type: 'clearcancel'}
 
 const updateItem = <T,>(items : T[], findPredicate : (item: T, index: number, items: T[]) => boolean, updateValue : Partial<T> | ((item: T) => T)) : number => {
   const index = items.findIndex(findPredicate)
@@ -68,6 +72,12 @@ export const reducer = (state: TagDialogState, action: TagAction): TagDialogStat
     case 'setAllTags': {
       const allTags = action.value
       return {...state, allTags, suggestions: getSuggestions(allTags, state.inputValue)}
+    }
+    case 'clearcancel': {
+      return {...state, canceled:false}
+    }
+    case 'cancel': {
+      return {...state, canceled:true}
     }
     case 'suggestTag': {
       const suggestions = getSuggestions(state.allTags, action.value)

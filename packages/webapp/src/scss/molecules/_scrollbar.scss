@@ -119,6 +119,7 @@ $scrollbar-overview-current-color: $primary-color;
 $scrollbar-overview-line-color: $text-low-color;
 $scrollbar-overview-line-width: 1px;
 $scrollbar-overview-circle-width: 8px;
+$box-shadow: #000 0px 0px 5px;
 
 .scrollbar-hidden {
   overflow: auto;
@@ -215,14 +216,15 @@ $scrollbar-overview-circle-width: 8px;
   align-items: center;
   z-index: 3;
   opacity: 1;
+ // box-shadow: #000 0px 0px 10px;
 
   &.-partial {
     opacity: .5;
   }
 
   &.-hidden {
-    opacity: 0;
-    display: none;
+    opacity: 0.3;
+    // display: none;
   }
 
   &.-small {
@@ -251,30 +253,60 @@ $scrollbar-overview-circle-width: 8px;
   margin-right: 16px;
   padding: 4px 8px;
   background-color: $scrollbar-thumb-color;
-  border-radius: $border-radius;
+  // border-radius: $border-radius;
+  // box-shadow: $box-shadow;
+  font-weight: 700;
 
   &.-hidden {
+    // opacity:0.5;
     display: none;
   }
 }
 
 .scrollbar_thumb {
   display: flex;
+  width: 32px;
+  height: 50px;
+  padding-top: 5px;
+  padding-left: 9px;
   flex-direction: column;
   background-color: $scrollbar-thumb-color;
-  border-radius: $border-radius;
+  // border-radius: 100%;
+  // box-shadow: $box-shadow;
 
   .fas {
-    padding: 8px;
-
-    &:hover {
-      color: $text-high-color;
-      background-color: $scrollbar-thumb-hover-color;
-    }
-  }
-
-  &.--active .fas {
-    color: $text-high-color;
-    background-color: $scrollbar-thumb-active-color;
+    padding: 4px;
   }
 }
+// .scrollbar_detail {
+//   height: auto;
+//   margin-right: 16px;
+//   padding: 4px 8px;
+//   background-color: $scrollbar-thumb-color;
+//   border-radius: $border-radius;
+//
+//   &.-hidden {
+//     display: none;
+//   }
+// }
+//
+// .scrollbar_thumb {
+//   display: flex;
+//   flex-direction: column;
+//   background-color: $scrollbar-thumb-color;
+//   border-radius: $border-radius;
+//
+//   .fas {
+//     padding: 8px;
+//
+//     &:hover {
+//       color: $text-high-color;
+//       background-color: $scrollbar-thumb-hover-color;
+//     }
+//   }
+//
+//   &.--active .fas {
+//     color: $text-high-color;
+//     background-color: $scrollbar-thumb-active-color;
+//   }
+// }

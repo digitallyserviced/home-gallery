@@ -16,3 +16,4 @@ export const byValueFn = (valueFn, asc = true) => {
 }
 
 export const byDateDesc = byValueFn(e => e.date, false)
+export const byKeyWith = (key:string) => byValueFn(e => e[key], false)

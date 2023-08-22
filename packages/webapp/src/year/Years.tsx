@@ -76,8 +76,10 @@ export const YearView = () => {
   }, [params, location])
 
   return (
-    <>
-      <List />
-    </>
+  <>
+
+      <NavBar />
+    <List />
+  </>
   )
 }

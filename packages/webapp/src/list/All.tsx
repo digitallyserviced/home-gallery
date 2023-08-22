@@ -3,6 +3,7 @@ import { useEffect } from "react";
 
 import { List } from './List';
 import { useSearchStore } from '../store/search-store'
+import { NavBar } from "../navbar/NavBar";
 
 export const AllView = () => {
   const search = useSearchStore(state => state.search);
@@ -12,8 +13,10 @@ export const AllView = () => {
   }, [])
 
   return ( 
-    <>
-      <List />
-    </>
+  <>
+
+      <NavBar />
+    <List />
+  </>
   )
 }

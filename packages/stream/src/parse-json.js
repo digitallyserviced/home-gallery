@@ -19,8 +19,8 @@ const parseJson = () => {
         json = null
         return next(new Error(`Could not parse JSON: ${e}`))
       }
-      this.push(json)
-      next(null)
+      // this.push(json)
+      next(null,json)
     }
   });
 }

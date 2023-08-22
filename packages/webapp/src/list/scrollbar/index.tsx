@@ -7,16 +7,18 @@ import { ScrollbarOverview } from './ScrollbarOverview'
 import { useScrollPageSpeedSimple, SimplePageSpeed } from './useScrollPageSpeed'
 
 import { initialState, reducer, ScrollbarActions, ScrollbarOverviewItem, ScrollbarState, VisibleHandle } from './state'
-import { overviewItemMapper, TopDateItem } from "./overviewItemMapper";
+import { overviewItemMapper, TopItem } from "./overviewItemMapper";
+import { useParams } from "react-router-dom";
 
 export interface ScrollbarProps {
   containerRef: React.RefObject<any>,
   style: React.CSSProperties,
   pageHeight: number,
-  topDateItems: TopDateItem[]
+  topItems: TopItem[]
 }
 
-export const Scrollbar = ({containerRef, style, pageHeight, topDateItems}: ScrollbarProps) => {
+export const Scrollbar = ({containerRef, style, pageHeight, topItems}: ScrollbarProps) => {
+  const params = useParams()
   const propState = {containerRef, pageHeight}
 
   const scrollTop = useScrollTop(containerRef)
@@ -29,9 +31,9 @@ export const Scrollbar = ({containerRef, style, pageHeight, topDateItems}: Scrol
   useEffect(() => dispatch({type: 'pageHeight', pageHeight}), [pageHeight])
 
   useEffect(() => {
-    const [overviewItems, detailTextFn] = overviewItemMapper(topDateItems, pageHeight, handleHeight / 2)
+    const [overviewItems, detailTextFn] = overviewItemMapper(topItems, pageHeight, handleHeight / 2,params)
     dispatch({type: 'overviewItems', overviewItems, detailTextFn})
-  }, [topDateItems, pageHeight, handleHeight])
+  }, [topItems, pageHeight, handleHeight,params])
 
   useEffect(() => dispatch({type: 'scrollTo', scrollTop}), [scrollTop])
 

@@ -6,7 +6,7 @@ const modelDir = process.env.MODEL_DIR || path.resolve(__dirname, '../models')
 
 const modelConfig = {
   mobileNet: {
-    version: 1, 
+    version: 2, 
     alpha: 1.0
   },
   cocoSsd: {

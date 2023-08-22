@@ -61,11 +61,19 @@ $nav-font-size-md: 200%;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: $nav-icon-size;
-  height: $nav-icon-size;
-  margin: $unit;
+  // width: $nav-icon-size;
+  // height: $nav-icon-size;
+  padding: $unit;
+    margin:4px;
   border-radius: $border-radius;
   background-color: rgba(255, 255, 255, .4);
+
+  > span.fas {
+    font-family:Iosevka;
+    margin: 4px; 
+  font-size: 1em;
+  line-height: 1.1em;
+  }
 
   > .fas {
     color: rgba(0, 0, 0, .6);

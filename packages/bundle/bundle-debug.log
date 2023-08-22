@@ -1,0 +1,78 @@
+{"level":30,"time":1684726446454,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Bundling target linux-x64"}
+{"level":20,"time":1684726446478,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Found . in /srv/home/packages/bundle/test/bundle/basic"}
+{"level":30,"time":1684726446481,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Require 1 packages with 2 files for 1 main packages"}
+{"level":20,"time":1684726446487,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + index.js"}
+{"level":20,"time":1684726446488,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + package.json"}
+{"level":30,"time":1684726446529,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/basic/1.0.0/basic-1.0.0-linux-x64.tar.gz': ba56f94844213e39d7d778a78e3e34241df681d965075dc37503f5427d69544d"}
+{"level":30,"time":1684726446532,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/basic/1.0.0/basic-1.0.0-linux-x64.tar.gz': ba56f94844213e39d7d778a78e3e34241df681d965075dc37503f5427d69544d"}
+{"level":30,"time":1684726446579,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Created archive /tmp/gallery-test/bundle/run-0522-033406/basic/1.0.0/basic-1.0.0-linux-x64.tar.gz"}
+{"level":30,"time":1684726446638,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Bundling target linux-x64"}
+{"level":20,"time":1684726446641,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Found . in /srv/home/packages/bundle/test/bundle/include-exclude"}
+{"level":30,"time":1684726446645,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Require 1 packages with 2 files for 1 main packages"}
+{"level":20,"time":1684726446649,"pid":3781304,"hostname":"maindesk","module":"filter","msg":"Create filter: Include vendor"}
+{"level":20,"time":1684726446649,"pid":3781304,"hostname":"maindesk","module":"filter","msg":"Create filter: Exclude vendor/*-win.exe"}
+{"level":20,"time":1684726446658,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + index.js"}
+{"level":20,"time":1684726446658,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + package.json"}
+{"level":20,"time":1684726446658,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + vendor"}
+{"level":20,"time":1684726446668,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + vendor/bin-linux"}
+{"level":30,"time":1684726446678,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/include-exclude/1.0.0/include-exclude-1.0.0-linux-x64.tar.gz': ede442e4be06f408b9ce6655122cadf78659cde1a135f209986f2d2359a0a9fa"}
+{"level":30,"time":1684726446682,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/include-exclude/1.0.0/include-exclude-1.0.0-linux-x64.tar.gz': ede442e4be06f408b9ce6655122cadf78659cde1a135f209986f2d2359a0a9fa"}
+{"level":30,"time":1684726446685,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Created archive /tmp/gallery-test/bundle/run-0522-033406/include-exclude/1.0.0/include-exclude-1.0.0-linux-x64.tar.gz"}
+{"level":30,"time":1684726446709,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Bundling target linux-x64"}
+{"level":20,"time":1684726446710,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Found . in /srv/home/packages/bundle/test/bundle/include-exclude"}
+{"level":30,"time":1684726446711,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Require 1 packages with 2 files for 1 main packages"}
+{"level":20,"time":1684726446712,"pid":3781304,"hostname":"maindesk","module":"filter","msg":"Create filter: Include vendor/*"}
+{"level":30,"time":1684726446712,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Map 'vendor' -> 'bin'"}
+{"level":20,"time":1684726446720,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + index.js"}
+{"level":20,"time":1684726446721,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + package.json"}
+{"level":20,"time":1684726446721,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + vendor"}
+{"level":20,"time":1684726446734,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + vendor/bin-linux"}
+{"level":20,"time":1684726446734,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + vendor/bin-win.exe"}
+{"level":20,"time":1684726446734,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Map: vendor -> bin"}
+{"level":20,"time":1684726446744,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Map: vendor/bin-linux -> bin/bin-linux"}
+{"level":20,"time":1684726446744,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Map: vendor/bin-win.exe -> bin/bin-win.exe"}
+{"level":30,"time":1684726446745,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/map-names/1.0.0/map-names-1.0.0-linux-x64.tar.gz': 7a0403de4da9d62163c022f82e77b643760a833cff70ed2c3d661b316e9603f9"}
+{"level":30,"time":1684726446787,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/map-names/1.0.0/map-names-1.0.0-linux-x64.tar.gz': 7a0403de4da9d62163c022f82e77b643760a833cff70ed2c3d661b316e9603f9"}
+{"level":30,"time":1684726446819,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Created archive /tmp/gallery-test/bundle/run-0522-033406/map-names/1.0.0/map-names-1.0.0-linux-x64.tar.gz"}
+{"level":30,"time":1684726446823,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Bundling target linux-x64"}
+{"level":20,"time":1684726446842,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Found . in /srv/home/packages/bundle/test/bundle/platform"}
+{"level":20,"time":1684726446848,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Found a in /srv/home/packages/bundle/test/bundle/platform/node_modules/a"}
+{"level":20,"time":1684726446848,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Skip optional package b with error: Module b in /srv/home/packages/bundle/test/bundle/platform/node_modules/b does not match target platform linux or arch x64"}
+{"level":20,"time":1684726446848,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Skip optional package c with error: Module c in /srv/home/packages/bundle/test/bundle/platform/node_modules/c does not match target platform linux or arch x64"}
+{"level":30,"time":1684726446855,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Require 2 packages with 3 files for 1 main packages"}
+{"level":20,"time":1684726446856,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + index.js"}
+{"level":20,"time":1684726446856,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + node_modules"}
+{"level":20,"time":1684726446856,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + package.json"}
+{"level":20,"time":1684726446860,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + node_modules/a"}
+{"level":20,"time":1684726446861,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + node_modules/a/package.json"}
+{"level":30,"time":1684726446868,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/linux-platform/1.0.0/linux-platform-1.0.0-linux-x64.tar.gz': 1d04498d535521b82acb0aa0b403c0ecd1d40d852bd2f95194a842560adf5655"}
+{"level":30,"time":1684726446869,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/linux-platform/1.0.0/linux-platform-1.0.0-linux-x64.tar.gz': 1d04498d535521b82acb0aa0b403c0ecd1d40d852bd2f95194a842560adf5655"}
+{"level":30,"time":1684726446872,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Created archive /tmp/gallery-test/bundle/run-0522-033406/linux-platform/1.0.0/linux-platform-1.0.0-linux-x64.tar.gz"}
+{"level":30,"time":1684726446872,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Bundling target darwin-x64"}
+{"level":20,"time":1684726446877,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Found . in /srv/home/packages/bundle/test/bundle/platform"}
+{"level":20,"time":1684726446880,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Skip optional package a with error: Module a in /srv/home/packages/bundle/test/bundle/platform/node_modules/a does not match target platform darwin or arch x64"}
+{"level":20,"time":1684726446880,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Found b in /srv/home/packages/bundle/test/bundle/platform/node_modules/b"}
+{"level":20,"time":1684726446880,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Skip optional package c with error: Module c in /srv/home/packages/bundle/test/bundle/platform/node_modules/c does not match target platform darwin or arch x64"}
+{"level":30,"time":1684726446881,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Require 2 packages with 3 files for 1 main packages"}
+{"level":20,"time":1684726446887,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + index.js"}
+{"level":20,"time":1684726446888,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + node_modules"}
+{"level":20,"time":1684726446888,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + package.json"}
+{"level":20,"time":1684726446888,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + node_modules/b"}
+{"level":20,"time":1684726446894,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + node_modules/b/package.json"}
+{"level":30,"time":1684726446895,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/linux-platform/1.0.0/linux-platform-1.0.0-darwin-x64.tar.gz': 3916d36dcf4a78ec3ff4bfc865c131725e86e4fbdddbc6512a24ca9fad889521"}
+{"level":30,"time":1684726446896,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/linux-platform/1.0.0/linux-platform-1.0.0-darwin-x64.tar.gz': 3916d36dcf4a78ec3ff4bfc865c131725e86e4fbdddbc6512a24ca9fad889521"}
+{"level":30,"time":1684726446897,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Created archive /tmp/gallery-test/bundle/run-0522-033406/linux-platform/1.0.0/linux-platform-1.0.0-darwin-x64.tar.gz"}
+{"level":30,"time":1684726446898,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Bundling target win-x64"}
+{"level":20,"time":1684726446904,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Found . in /srv/home/packages/bundle/test/bundle/platform"}
+{"level":20,"time":1684726446905,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Skip optional package a with error: Module a in /srv/home/packages/bundle/test/bundle/platform/node_modules/a does not match target platform win32 or arch x64"}
+{"level":20,"time":1684726446905,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Skip optional package b with error: Module b in /srv/home/packages/bundle/test/bundle/platform/node_modules/b does not match target platform win32 or arch x64"}
+{"level":20,"time":1684726446905,"pid":3781304,"hostname":"maindesk","module":"packageResolver","msg":"Found c in /srv/home/packages/bundle/test/bundle/platform/node_modules/c"}
+{"level":30,"time":1684726446906,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Require 2 packages with 3 files for 1 main packages"}
+{"level":20,"time":1684726446907,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + index.js"}
+{"level":20,"time":1684726446907,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + node_modules"}
+{"level":20,"time":1684726446907,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + package.json"}
+{"level":20,"time":1684726446908,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + node_modules/c"}
+{"level":20,"time":1684726446909,"pid":3781304,"hostname":"maindesk","module":"archive","msg":"Filter: + node_modules/c/package.json"}
+{"level":30,"time":1684726446911,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/linux-platform/1.0.0/linux-platform-1.0.0-win-x64.tar.gz': 67d27aa028d145884251a177c4829b86c424c9f8a89b62aca9c9414eb7be08e4"}
+{"level":30,"time":1684726446917,"pid":3781304,"hostname":"maindesk","module":"updateHash","msg":"Calculated sha256 hash for '/tmp/gallery-test/bundle/run-0522-033406/linux-platform/1.0.0/linux-platform-1.0.0-win-x64.tar.gz': 67d27aa028d145884251a177c4829b86c424c9f8a89b62aca9c9414eb7be08e4"}
+{"level":30,"time":1684726446924,"pid":3781304,"hostname":"maindesk","module":"main","msg":"Created archive /tmp/gallery-test/bundle/run-0522-033406/linux-platform/1.0.0/linux-platform-1.0.0-win-x64.tar.gz"}

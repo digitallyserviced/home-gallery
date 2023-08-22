@@ -38,7 +38,14 @@ export const TagInput : FunctionComponent<TagInputProps> = ({value, tags, withRe
 
   const handleKeyDown = (ev: KeyboardEvent<HTMLInputElement>) => {
     let value: string = ev.currentTarget.value;
-    if (ev.key == 'Enter') {
+    if (ev.ctrlKey && ev.key=='x') {
+      ev.bubbles=true
+      ev.persist()
+      console.log(ev.isPropagationStopped())
+      // ev.preventDefault()
+      return dispatch({type: 'cancel'})
+      return
+    } else if (ev.key == 'Enter') {
       value = value.replace(/(^\s+|\s+$)/g, '')
       const activeSuggestion = suggestions.find(suggestion => suggestion.active)
       if (activeSuggestion) {

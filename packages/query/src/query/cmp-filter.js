@@ -39,6 +39,18 @@ const cmpFilters = [
     filter: ast => listCompare(v => v.files, ast.op, toLower(ast.value.value), v => toLower(ext(v.filename)))
   },
   {
+    keys: ['vibrance'],
+    ops: ['=', '<', '<=', '>', '>=', '!='],
+    matchValue: matchFloat,
+    filter: ast => compare(v => v['colorDistance'], ast.op, parseFloat(+ast.value.value))
+  },
+  {
+    keys: ['similarity'],
+    ops: ['=', '<', '<=', '>', '>=', '!='],
+    matchValue: matchFloat,
+    filter: ast => compare(v => v[ast.key], ast.op, parseFloat(+ast.value.value))
+  },
+  {
     keys: ['filesize'],
     ops: ['=', '<', '<=', '>', '>=', '!='],
     matchValue: v => v.match(bytes.pattern),

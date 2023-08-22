@@ -7,7 +7,7 @@ const open = require('open')
 
 const HOST = process.env.HOST || '127.0.0.1'
 const PORT = process.env.PORT || 1234
-const API_PROXY = process.env.API_PROXY || 'http://127.0.0.1:3000'
+const API_PROXY = process.env.API_PROXY || 'http://localhost:3000'
 
 const baseDir = 'dist'
 
@@ -16,6 +16,13 @@ const app = express()
 app.use(compression())
 app.use(
   '/api/',
+  createProxyMiddleware({
+    target: API_PROXY,
+    secure: false
+  })
+);
+app.use(
+  '/origs/',
   createProxyMiddleware({
     target: API_PROXY,
     secure: false

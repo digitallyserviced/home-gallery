@@ -7,6 +7,7 @@ import {
 
 import { List } from './List';
 import { useSearchStore } from '../store/search-store';
+import { NavBar } from "../navbar/NavBar";
 
 export const SearchView = () => {
   const params = useParams();
@@ -19,8 +20,10 @@ export const SearchView = () => {
   }, [term])
 
   return (
-    <>
-      <List />
-    </>
+  <>
+
+      <NavBar />
+    <List />
+  </>
   )
 }

@@ -24,6 +24,18 @@ const orderRules = [
   },
   {
     type: 'sortKey',
+    keys: ['vibrance'],
+    defaultDirection: 1,
+    sort: () => sortBy(v => v.colorDistance>0 ? v.colorDistance : 0)
+  },
+  {
+    type: 'sortKey',
+    keys: ['similarity'],
+    defaultDirection: -1,
+    sort: () => sortBy(v => v.similarity>0 ? v.similarity : 0)
+  },
+  {
+    type: 'sortKey',
     keys: ['filesize'],
     defaultDirection: -1,
     sort: () => sortBy(v => v.files ? v.files[0].size : 0)

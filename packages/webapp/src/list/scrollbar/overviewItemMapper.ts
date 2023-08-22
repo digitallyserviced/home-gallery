@@ -40,24 +40,26 @@ const setDateValue = items => {
   items.forEach(item => item.dateValue = dateValueFn(item.date))
 }
 
-export interface TopDateItem {
+export interface TopItem {
   top: number,
   height: number,
-  date: string,
-  dateValue: string
+  value?: string,
+  date?: string,
+  dateValue?: string,
+  sortKey?: string
 }
 
-export const overviewItemMapper = (topDateItems: TopDateItem[], viewHeight: number, padding: number): [ScrollbarOverviewItem[], (number) => string] => {
-  if (!topDateItems.length) {
+export const overviewItemMapper = (topItems: TopItem[], viewHeight: number, padding: number, params: any): [ScrollbarOverviewItem[], (number) => string] => {
+  if (!topItems.length) {
     return [[], () => '']
   }
 
-  if (!isInDateOrder(topDateItems)) {
-    return [[], () => '']
-  }
-  setDateValue(topDateItems)
+  // if (!isInDateOrder(topItems)) {
+  //   return [[], () => '']
+  // }
+  setDateValue(topItems)
 
-  const lastItem = topDateItems[topDateItems.length - 1]
+  const lastItem = topItems[topItems.length - 1]
   const maxTop = (lastItem.top + lastItem.height) - viewHeight
 
   const itemTopToOverviewTop = top => padding + (viewHeight - 2 * padding) * top / maxTop
@@ -67,7 +69,7 @@ export const overviewItemMapper = (topDateItems: TopDateItem[], viewHeight: numb
       return true
     }
     // Skip on same date value
-    if (lastOverviewItem.text == item.dateValue) {
+    if (lastOverviewItem.text == item.value) {
       return false
     }
     // Skip if distance is to low
@@ -81,17 +83,17 @@ export const overviewItemMapper = (topDateItems: TopDateItem[], viewHeight: numb
 
   const overviewItems: ScrollbarOverviewItem[] = []
   let lastOverviewItem: ScrollbarOverviewItem
-  for (let i = 0; i < topDateItems.length; i++) {
-    const item = topDateItems[i]
+  for (let i = 0; i < topItems.length; i++) {
+    const item = topItems[i]
     if (isNextOverviewItem(lastOverviewItem, item)) {
-      lastOverviewItem = {type: 'text', top: itemTopToOverviewTop(item.top), text: item.dateValue}
+      lastOverviewItem = {type: 'text', top: itemTopToOverviewTop(item.top), text: item.value}
       overviewItems.push(lastOverviewItem)
     }
   }
 
   const detailTextFn = (scrollTop) => {
-    const lastItem = topDateItems.filter(item => item.top <= scrollTop).pop()
-    return `${lastItem?.date ? formatDate('%d.%m.%y', lastItem?.date) : ''}`
+    const lastItem = topItems.filter(item => item.top <= scrollTop).pop()
+    return `${lastItem?.value ? lastItem?.value : formatDate('%d.%m.%y', lastItem?.value)}`
   }
 
   return [overviewItems, detailTextFn]

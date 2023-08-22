@@ -2,7 +2,7 @@ const dateKeys = ['year', 'y', 'month', 'm', 'day', 'd', 'hour', 'H', 'minute', 
 
 const geoAliases = {lat: 'latitude', lon: 'longitude', lng: 'longitude'}
 
-const numericKeys = [...dateKeys, ...Object.keys(geoAliases), ...Object.values(geoAliases), 'filesize', 'height', 'width', 'ratio', 'duration', 'iso']
+const numericKeys = [...dateKeys, ...Object.keys(geoAliases), ...Object.values(geoAliases), 'filesize', 'height', 'width', 'ratio', 'duration', 'iso','similarity','colorDistance']
 
 const rangeKeys = [...numericKeys, 'date']
 

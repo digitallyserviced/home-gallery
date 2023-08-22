@@ -7,7 +7,7 @@ const typeToClass = {
   fullCircle: '-circle -full'
 }
 
-const typeClass = type => typeToClass[type] || '-circle'
+const typeClass = type => typeToClass[type] || '-text'
 
 export const ScrollbarOverview = ({overviewItems, show}) => {
   return (

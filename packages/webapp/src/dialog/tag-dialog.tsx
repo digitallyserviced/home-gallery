@@ -8,6 +8,7 @@ import { Tag } from "../api/models";
 import { RecentTags } from "./recent-tags";
 import { MultiTagHelp, SingleTagHelp } from "./tag-dialog-help";
 import { useDialogStore } from "./tag-dialog-store";
+import { Dialog } from "./dialog";
 
 export interface TagDialogFormData {
   tags: Tag[];
@@ -45,35 +46,6 @@ const useAllTags = () => {
   return allTags
 }
 
-const Dialog = ({visible, title, onCancel, onSubmit, children}) => {
-  return (
-    <div className={`modal ${visible ? '-visible' : ''}`}>
-      <div className="modal__backdrop"></div>
-      <div className="modal__overlay">
-        <div className="dialog text">
-          <div className="dialog__header">
-            <h3>{title}</h3>
-            <button className="button -closeable" onClick={onCancel}><i className="fas fa-times"></i></button>
-          </div>
-          <form autoComplete="off" onSubmit={onSubmit}>
-            <div className="dialog__scroll-container">
-              <div className="dialog__content">
-                {children}
-              </div>
-            </div>
-            <div className="dialog__footer -grey">
-              <div className="button-group -right">
-                <button className="button -primary">Submit</button>
-                <a className="link button -link" onClick={onCancel}>Cancel</a>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 export const MultiTagDialog = ({onCancel, onSubmit, visible}: TagDialogProps) => {
   const [state, dispatch] = useDialogStore();
   const [showHelp, setShowHelp] = useState(false)
@@ -84,6 +56,14 @@ export const MultiTagDialog = ({onCancel, onSubmit, visible}: TagDialogProps) =>
   useEffect(() => {
     dispatch({type: 'setAllTags', value: allTags})
   }, [allTags])
+
+
+  useEffect(() => {
+    if (state.canceled){
+      onCancel()
+      dispatch({type:'clearcancel'})
+    } else {}
+  }, [state.canceled])
 
   const getFinalTags = () => {
     const tags = [...state.tags]

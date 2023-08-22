@@ -9,7 +9,7 @@ const stringifyEntryTextCache = entry => {
   return entry.textCache
 }
 
-export const execQuery = async (entries: Entry[], query: String) => {
+export const execQuery = async (entries: Entry[], query: String, seedEntry:Entry) => {
   if (!entries.length) {
     return entries;
   }

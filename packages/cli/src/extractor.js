@@ -29,7 +29,7 @@ const command = {
       },
       'api-server': {
         describe: 'API server url for image similarity, face and object detection',
-        default: 'https://api.home-gallery.org'
+        default: 'http://localhost:3001'
       },
       'api-server-timeout': {
         describe: 'Timeout for api server calls in seconds',

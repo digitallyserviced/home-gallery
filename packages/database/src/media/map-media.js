@@ -4,6 +4,7 @@ const log = require('@home-gallery/logger')('database.media')
 
 const { getEntryDate } = require('./date')
 const { getVibrantColors } = require('./vibrant-colors')
+const {getMjMeta}= require('./mj')
 const { getExif } = require('./exif')
 const { getAddress } = require('./address')
 const { getGeo} = require('./geo')
@@ -18,7 +19,8 @@ const createMedia = (entry, updated) => {
   const date = getEntryDate(entry) || entry.date
   const files = getFiles(entry)
   const previews = getPreviews(entry)
-  const vibrantColors = getVibrantColors(entry)
+  const [vibrantColors,vibrance] = getVibrantColors(entry)
+  const mjmeta = getMjMeta(entry)
   
   const exif = getExif(entry)
   const address = getAddress(entry)
@@ -37,9 +39,10 @@ const createMedia = (entry, updated) => {
     files,
     previews,
     vibrantColors,
+    vibrance,
     tags,
     objects,
-    faces
+    faces,mjmeta
   }, exif, address, geo, similarityHash)
 
   return media
@@ -51,6 +54,7 @@ const mapMedia = (updated) => {
       const media = createMedia(entry, updated)
       this.push(media)
     } catch (e) {
+      console.trace(e)
       log.warn(e, `Could not create media entry of ${entry}: ${e}. Skip it`)
     }
     cb()

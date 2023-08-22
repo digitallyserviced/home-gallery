@@ -6,7 +6,7 @@ import { SearchNavBar } from './search/SearchNavBar';
 import { MultiTagDialog } from '../dialog/tag-dialog';
 import { addTags } from '../api/ApiService';
 
-export const EditNavBar = () => {
+export const EditNavBar = ({comparing}) => {
   const [dialogVisible, setDialogVisible] = useState(false);
   const viewMode = useEditModeStore(state => state.viewMode)
 

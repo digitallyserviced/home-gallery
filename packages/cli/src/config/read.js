@@ -8,7 +8,9 @@ const { resolveConfig } = require('./resolve-config')
 const readConfig = async (configFile, env) => {
   const isYaml = configFile.match(/\.ya?ml$/i);
   const isJson = configFile.match(/\.json$/i);
-  if (!isYaml && !isJson) {
+  const isTxt = configFile.match(/\.txt$/i);
+  
+  if (!isYaml && !isJson && !isTxt) {
     throw new Error(`Unknown file extension of '${configFile}'. Expect a .yaml or .json file`)
   }
 

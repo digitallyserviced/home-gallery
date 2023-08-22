@@ -118,7 +118,13 @@ export const MediaView = () => {
       const i = Math.min(entries.length - 1, Math.max(0, index + (negate * offset)))
       viewEntry(i)
     } else if (type === 'similar' && current?.similarityHash) {
-      navigate(`/similar/${current.shortId}`);
+      const {threshold}=action
+
+      if(threshold>0){
+        navigate(`/similar/${current.shortId}/${threshold}`);
+      } else {
+        navigate(`/similar/${current.shortId}`);
+      }
     } else if (type === 'toggleDetails') {
       setShowDetails(!showDetails);
     } else if (type === 'toggleNavigation') {

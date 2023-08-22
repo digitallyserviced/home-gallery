@@ -7,7 +7,7 @@ const { conditionalTask } = require('../../stream/task');
 const { sizeToImagePreviewSuffix } = require('./image-preview')
 
 const ERROR_THRESHOLD = 5
-const PUBLIC_API_SERVER = 'https://api.home-gallery.org'
+const PUBLIC_API_SERVER = 'http://localhost:3001'
 const DOCUMENATION_URL = 'https://docs.home-gallery.org'
 
 const getEntryFileBySuffixes = (storage, entry, suffixes) => suffixes.find(suffix => storage.hasEntryFile(entry, suffix));
@@ -86,6 +86,18 @@ const logPublicApiPrivacyHint = (apiServerUrl, feature) => {
   }
   log.warn(`You are using the public api server ${apiServerUrl} for ${feature}. Please read its documentation at ${DOCUMENATION_URL} for privacy concerns`)
 }
+const mjMetaData = (storage, apiServerUrl, imagePreviewSizes, timeout = 30, concurrent = 5) => {
+  logPublicApiPrivacyHint(apiServerUrl, 'midjourney metadata')
+  return apiServerEntry(storage, {
+    name: 'midjourney metadata',
+    apiServerUrl,
+    apiPath: '/mj-metadata',
+    imagePreviewSuffixes: imagePreviewSizes.map(sizeToImagePreviewSuffix),
+    entrySuffix: 'mj-metadata.json',
+    concurrent,
+    timeout,
+  })
+}
 
 const similarEmbeddings = (storage, apiServerUrl, imagePreviewSizes, timeout = 30, concurrent = 5) => {
   logPublicApiPrivacyHint(apiServerUrl, 'similar images')
@@ -130,5 +142,5 @@ module.exports = {
   apiServerEntry,
   similarEmbeddings,
   objectDetection,
-  faceDetection
+  faceDetection,mjMetaData
 }

@@ -22,6 +22,10 @@ import { Tags } from './tags/Tags';
 import { Map } from './map';
 import { MediaView } from './single/MediaView';
 import { useAppConfig } from './utils/useAppConfig'
+import { Sorts, SortsView } from "./sorts/Sorts";
+import { useSearchStore } from "./store/search-store";
+import { MediaGrid } from "./list/Grid";
+import { VibranceView } from "./list/Vibrance";
 
 export const Root = () => {
   return (
@@ -33,6 +37,7 @@ export const Main = () => {
     const addEntries = useEntryStore(state => state.addEntries);
     const initEvents = useEventStore(state => state.initEvents);
     const addEvent = useEventStore(state => state.addEvent);
+  // const {search} = useSearchStore()
     const appConfig = useAppConfig()
 
     addEntries(appConfig.entries.map(mapEntriesForBrowser));
@@ -76,10 +81,16 @@ export const Main = () => {
         <LastLocationProvider>
           <Routes>
             <Route path="/" element={<AllView />} />
+            <Route path="/sorts" element={<SortsView />}>
+              <Route path=":sortKey/:value?" element={<SortsView />} />
+              <Route path=":sortKey" element={<Sorts />} />
+            </Route>
+            <Route path="/grid" element={<MediaGrid />} />
             <Route path="/years" element={<Years />} />
             <Route path="/years/:year" element={<YearView />} />
-            <Route path="/view/:id" element={<MediaView />} />
             <Route path="/similar/:id" element={<SimilarView />} />
+            <Route path="/vibrance/:id" element={<VibranceView />} />
+            <Route path="/view/:id" element={<MediaView />} />
             <Route path="/search/:term" element={<SearchView />} />
             <Route path="/faces/:id/:faceIndex" element={<FacesView />} />
             <Route path="/tags" element={<Tags />} />

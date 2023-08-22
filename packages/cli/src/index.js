@@ -10,6 +10,7 @@ const serverCli = require('./server');
 const storageCli = require('./storage');
 const exportCli = require('./export');
 const fetchCli = require('./fetch');
+const mjCli = require('./mjfetch');
 const castCli = require('./cast');
 const interactiveCli = require('./interactive');
 const runCli = require('./run')
@@ -27,6 +28,7 @@ const cli = () => {
     .command(storageCli)
     .command(exportCli)
     .command(fetchCli)
+    .command(mjCli)
     .command(castCli)
     .command(interactiveCli)
     .command(runCli)

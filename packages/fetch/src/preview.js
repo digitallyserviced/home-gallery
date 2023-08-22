@@ -28,7 +28,6 @@ const getMissingFiles = (remoteDatabase, localDatabase) => {
   log.debug(t0, `Found ${missingRemoteFiles.length} missing remote preview files`)
   return missingRemoteFiles
 }
-
 const downloadMissingFiles = async (serverUrl, missingFiles, storageDir, { insecure }) => {
   if (!missingFiles.length) {
     log.info(`No missing files to download`)

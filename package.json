@@ -41,10 +41,10 @@
     "@types/tar-fs": "^2.0.0",
     "chai": "^4.3.6",
     "cpy-cli": "^4.2.0",
-    "extract-zip": "^2.0.1",
     "esbuild": "^0.15.13",
     "esbuild-register": "^3.3.3",
     "express": "^4.17.3",
+    "extract-zip": "^2.0.1",
     "http-proxy-middleware": "^2.0.6",
     "kss": "^3.0.1",
     "link-parent-bin": "^2.0.0",
@@ -72,7 +72,6 @@
     "workbox-cli": "^6.5.1"
   },
   "dependencies": {
-    "@home-gallery/api-server": "file:packages/api-server",
     "@home-gallery/bundle": "file:packages/bundle",
     "@home-gallery/cast": "file:packages/cast",
     "@home-gallery/cli": "file:packages/cli",
@@ -87,7 +86,12 @@
     "@home-gallery/server": "file:packages/server",
     "@home-gallery/storage": "file:packages/storage",
     "@home-gallery/stream": "file:packages/stream",
-    "@home-gallery/styleguide": "file:packages/styleguide",
-    "@home-gallery/webapp": "file:packages/webapp"
+    "@home-gallery/webapp": "file:packages/webapp",
+    "ffprobe": "^1.1.2",
+    "react-window": "^1.8.9"
+  },
+  "disabledDependencies": {
+    "@home-gallery/api-server": "file:packages/api-server",
+    "@home-gallery/styleguide": "file:packages/styleguide"
   }
 }

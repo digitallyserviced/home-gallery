@@ -3,19 +3,20 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import useBodyDimensions from "../utils/useBodyDimensions";
-import { getLowerPreviewUrl } from '../utils/preview'
+import { getLowerPreviewUrl, getOrigUrl } from '../utils/preview'
 
 export const MediaViewImage = (props) => {
   const imgRef = useRef<HTMLElement>();
   const [faceRects, setFaceRects] = useState([]);
   const [objectRects, setObjectRects] = useState([]);
   const { showDetails } = props;
-  const { id, shortId, previews, faces, objects } = props.media;
+  const { id, shortId, previews, faces, objects,files } = props.media;
   const { width } = useBodyDimensions();
   const navigate = useNavigate();
 
   const largeSize = width <= 1280 ? 1280 : 1920;
 
+  const origUrl = getOrigUrl(files)
   const smallUrl = getLowerPreviewUrl(previews, 320)
   const largeUrl = getLowerPreviewUrl(previews, largeSize)
   const [src, setSrc] = useState('');
@@ -23,9 +24,9 @@ export const MediaViewImage = (props) => {
   useEffect(() => {
     const img = new Image();
     img.addEventListener('load', () => {
-      setSrc(largeUrl);
+      setSrc(origUrl);
     });
-    img.src = largeUrl;
+    img.src = origUrl;
   }, []);
 
   const selectFace = (shortId, faceNo) => {
@@ -73,8 +74,8 @@ export const MediaViewImage = (props) => {
   return (
     <>
       <div className="mediaView -image">
-        <img ref={imgRef} className="mediaView__media" src={smallUrl} />
-        <img className="mediaView__media" src={src} />
+        <img ref={imgRef} className="mediaView__media" src={origUrl} />
+        <img className="mediaView__media" src={origUrl} />
         {showDetails && objectRects}
         {showDetails && faceRects}
       </div>

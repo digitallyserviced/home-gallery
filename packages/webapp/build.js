@@ -11,6 +11,7 @@ const targets = [
     platform: 'browser',
     target: 'es2020',
     outdir: 'dist',
+    // external:['@home-gallery/events'],
     watch: watch
   },
   {

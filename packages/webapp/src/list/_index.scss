@@ -1,1 +1,68 @@
-@import './fluent';
+$test-color-val: rgba(188,84,60,1);
+$test-color1-val: rgba(252,243,212,1);
+$test-color2-val: rgba(164,68,52,1);
+$test-color3-val: rgba(147,118,90,1);
+$test-color4-val: rgba(208,205,177,1);
+$test-color5-val: rgba(78,44,41,1);
+.fluent__row {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.fluent__cell {
+  margin-left: 8px;
+  position: relative;
+
+  img {
+    object-fit: cover;
+    background-color: #333;
+  }
+
+  &.-selected {
+    outline: 4px solid mix($white, $primary-color, 40%);
+    outline-offset: -1px;
+    filter: brightness(110%) saturate(110%);
+  }
+
+  ._detail {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    border-radius: $border-radius;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: $text-high-color;
+    background-color: rgba(0, 0, 0, 0.25);
+
+    .fas {
+      color: $text-high-color;
+    }
+  }
+
+  &:hover {
+    ._detail {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+  & span.overlay {
+    width:100% !important;
+    
+    color:white !important;
+    background-color:rgba(0,0,0,0.3) !important;
+    position:absolute !important;
+    text-align:center !important;
+  }
+}
+
+@include only-sm {
+  .fluent__cell ._detail {
+    padding-left: 4px;
+    padding-right: 4px;
+    color: $text-high-color;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    .fas {
+      color: $text-high-color;
+    }
+  }
+}

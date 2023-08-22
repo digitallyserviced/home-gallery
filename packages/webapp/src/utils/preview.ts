@@ -5,6 +5,13 @@ export const getPreviewSize = preview => {
 
 export const byPreviewSize = (a, b) => getPreviewSize(b) - getPreviewSize(a)
 
+export const getOrigUrl = (files) => {
+  const orig = files?.find(file => file.type==='image')
+  if (!orig) {
+    return ""
+  }
+  return `/origs/${orig.filename}`
+}
 export const getLowerPreviewUrl = (previews, size) => {
   const preview = previews?.filter(preview => { const s = getPreviewSize(preview); return s > 0 && s <= size}).shift()
   if (!preview) {

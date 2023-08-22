@@ -1,9 +1,9 @@
 // global reset
 .galleryRoot,
 .galleryRoot * {
-  @include reset-box;
+  // @include reset-box;
   @include reset-font;
-  @include reset-color;
+  // @include reset-color;
 }
 
 .galleryRoot {
